@@ -1,0 +1,150 @@
+
+ECEN 2350 -- Digital Logic
+Final Project -- 24hr Clock
+Ben Cavins (benjamin.cavins@colorado.edu)
+Last Modified: 2013-05-01
+
+============================================================
+    FILES
+============================================================
+
+- clock_24hr.v (code for 24hr clock)
+- Clock100and1.v (code for 100Hz and 1Hz clocks)
+- SevenSegmentDisplay.v (code for converting digits to SSDs)
+- README (this file)
+
+============================================================
+    SETTING UP ON DE0
+============================================================
+
+Connect the input/output elements to the following pins:
+
++----------+----------+
+|alarm_set |PIN_D13   |
++----------+----------+
+|btn0      |PIN_H2    |
++----------+----------+
+|btn1      |PIN_G3    |
++----------+----------+
+|btn2      |PIN_F1    |
++----------+----------+
+|clk5MHz   |PIN_G21   |
++----------+----------+
+|leds[9]   |PIN_B1    |
++----------+----------+
+|leds[8]   |PIN_B2    |
++----------+----------+
+|leds[7]   |PIN_C2    |
++----------+----------+
+|leds[6]   |PIN_C1    |
++----------+----------+
+|leds[5]   |PIN_E1    |
++----------+----------+
+|leds[4]   |PIN_F2    |
++----------+----------+
+|leds[3]   |PIN_H1    |
++----------+----------+
+|leds[2]   |PIN_J3    |
++----------+----------+
+|leds[1]   |PIN_J2    |
++----------+----------+
+|leds[0]   |PIN_J1    |
++----------+----------+
+|ssd0[6]   |PIN_F13   |
++----------+----------+
+|ssd0[5]   |PIN_F12   |
++----------+----------+
+|ssd0[4]   |PIN_G12   |
++----------+----------+
+|ssd0[3]   |PIN_H13   |
++----------+----------+
+|ssd0[2]   |PIN_H12   |
++----------+----------+
+|ssd0[1]   |PIN_F11   |
++----------+----------+
+|ssd0[0]   |PIN_E11   |
++----------+----------+
+|ssd1[6]   |PIN_A15   |
++----------+----------+
+|ssd1[5]   |PIN_E14   |
++----------+----------+
+|ssd1[4]   |PIN_B14   |
++----------+----------+
+|ssd1[3]   |PIN_A14   |
++----------+----------+
+|ssd1[2]   |PIN_C13   |
++----------+----------+
+|ssd1[1]   |PIN_B13   |
++----------+----------+
+|ssd1[0]   |PIN_A13   |
++----------+----------+
+|ssd2[6]   |PIN_F14   |
++----------+----------+
+|ssd2[5]   |PIN_B17   |
++----------+----------+
+|ssd2[4]   |PIN_A17   |
++----------+----------+
+|ssd2[3]   |PIN_E15   |
++----------+----------+
+|ssd2[2]   |PIN_B16   |
++----------+----------+
+|ssd2[1]   |PIN_A16   |
++----------+----------+
+|ssd2[0]   |PIN_D15   |
++----------+----------+
+|ssd3[6]   |PIN_G15   |
++----------+----------+
+|ssd3[5]   |PIN_D19   |
++----------+----------+
+|ssd3[4]   |PIN_C19   |
++----------+----------+
+|ssd3[3]   |PIN_B19   |
++----------+----------+
+|ssd3[2]   |PIN_A19   |
++----------+----------+
+|ssd3[1]   |PIN_F15   |
++----------+----------+
+|ssd3[0]   |PIN_B18   |
++----------+----------+
+|sw0       |PIN_J6    |
++----------+----------+
+|sw1       |PIN_H5    |
++----------+----------+
+|sw2       |PIN_H6    |
++----------+----------+
+|sw3       |PIN_G4    |
++----------+----------+
+
+============================================================
+    CONTROLS
+============================================================
+
+sw0: When down, displays the time in HH/MM. When up, displays
+     time in MM/SS.
+
+sw1: When up, puts clock in set mode. 
+
+sw2: When up, puts alarm in set mode.
+
+sw3: When up, alarm is on.
+
+button0: When clock is in set mode, increments minutes. When
+         the alarm is in set mode, increments minutes. When
+         the alarm is going off, stops the alarm.
+
+button1: When clock is in set mode, increments hours. When
+         the alarm is in set mode, increments hours. When
+         the alarm is going off, stops the alarm.
+
+button2: When the alarm is going off, stops the alarm.
+
+
+If the alarm for the clock is on, the decimal point on the
+right-most seven-segment display (HEX0) will be lit. When 
+the clock time is the same as the alarm time and the alarm
+is on, the alarm will "ring", which is indicated by the
+ten LEDs flashing in one-second intervals. To stop the alarm
+from ringing, push any of the buttons. Note that this does
+not turn the alarm off, it just stops the lights from 
+flashing. 
+
